@@ -41,3 +41,12 @@ test("deep links load and unknown paths redirect", async ({ page }) => {
   await page.goto("/nope")
   await expect(page).toHaveURL(/\/overview$/)
 })
+
+test("sidebar links navigate without a reload", async ({ page }) => {
+  const errors: string[] = []
+  page.on("pageerror", (error) => errors.push(error.message))
+  await page.goto("/overview")
+  await page.getByRole("link", { name: "Analytics" }).first().click()
+  await expect(page.getByRole("heading", { level: 1, name: "Analytics" })).toBeVisible()
+  expect(errors).toEqual([])
+})

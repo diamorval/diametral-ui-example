@@ -85,7 +85,9 @@ export function App() {
   const [paletteOpen, setPaletteOpen] = useState(false)
   const current = PAGES.find((p) => `/${p.id}` === pathname) ?? PAGES[0]
 
-  useEffect(() => window.scrollTo(0, 0), [pathname])
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
