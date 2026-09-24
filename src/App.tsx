@@ -175,8 +175,8 @@ export function App() {
           <SidebarInset>
             <header className="sticky top-0 z-10 flex h-14 items-center gap-3 border-b border-border bg-background px-4">
               <SidebarTrigger />
-              <Separator orientation="vertical" className="h-5" />
-              <Breadcrumb>
+              <Separator orientation="vertical" className="hidden md:block data-vertical:h-5 data-vertical:self-center" />
+              <Breadcrumb className="hidden md:block">
                 <BreadcrumbList>
                   <BreadcrumbItem>
                     <BreadcrumbLink href="#/overview">{current.group}</BreadcrumbLink>
@@ -188,9 +188,9 @@ export function App() {
                 </BreadcrumbList>
               </Breadcrumb>
               <div className="ms-auto flex items-center gap-2">
-                <Button variant="outline" size="sm" onClick={() => setPaletteOpen(true)}>
-                  <MagnifyingGlassIcon /> Search
-                  <KbdGroup>
+                <Button variant="outline" size="sm" aria-label="Search" onClick={() => setPaletteOpen(true)}>
+                  <MagnifyingGlassIcon /> <span className="hidden sm:inline">Search</span>
+                  <KbdGroup className="hidden sm:inline-flex">
                     <Kbd>⌘</Kbd>
                     <Kbd>K</Kbd>
                   </KbdGroup>
