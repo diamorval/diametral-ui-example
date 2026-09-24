@@ -56,24 +56,11 @@ import {
   Wordmark,
 } from "diametral-ds"
 import { Suspense, useEffect, useState } from "react"
+import { Link, Navigate, Route, Routes, useLocation, useNavigate } from "react-router"
 
-import { PAGES, type PageId } from "./pages"
+import { PAGES } from "./pages"
 
 const GROUPS = [...new Set(PAGES.map((p) => p.group))]
-
-function useHashPage(): PageId {
-  const read = () => (PAGES.find((p) => `#/${p.id}` === location.hash)?.id ?? "overview") as PageId
-  const [page, setPage] = useState(read)
-  useEffect(() => {
-    const onHash = () => {
-      setPage(read())
-      window.scrollTo(0, 0)
-    }
-    window.addEventListener("hashchange", onHash)
-    return () => window.removeEventListener("hashchange", onHash)
-  }, [])
-  return page
-}
 
 function useTheme() {
   const [mode, setMode] = useState<ThemeSwitcherMode>(
@@ -92,10 +79,13 @@ function useTheme() {
 }
 
 export function App() {
-  const page = useHashPage()
+  const { pathname } = useLocation()
+  const navigate = useNavigate()
   const [mode, setMode] = useTheme()
   const [paletteOpen, setPaletteOpen] = useState(false)
-  const current = PAGES.find((p) => p.id === page)!
+  const current = PAGES.find((p) => `/${p.id}` === pathname) ?? PAGES[0]
+
+  useEffect(() => window.scrollTo(0, 0), [pathname])
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -114,10 +104,10 @@ export function App() {
         <SidebarProvider>
           <Sidebar collapsible="icon">
             <SidebarHeader>
-              <a href="#/overview" className="flex items-center gap-2 px-2 py-1.5">
+              <Link to="/overview" className="flex items-center gap-2 px-2 py-1.5">
                 <Wordmark variant="square" label="" className="[&_svg]:size-6" />
                 <span className="text-sm font-medium group-data-[collapsible=icon]:hidden">Diametral Ops</span>
-              </a>
+              </Link>
             </SidebarHeader>
             <SidebarContent>
               {GROUPS.map((group) => (
@@ -128,9 +118,9 @@ export function App() {
                       {PAGES.filter((p) => p.group === group).map((p) => (
                         <SidebarMenuItem key={p.id}>
                           <SidebarMenuButton
-                            isActive={p.id === page}
+                            isActive={p.id === current.id}
                             tooltip={p.title}
-                            render={<a href={`#/${p.id}`} />}
+                            render={<Link to={`/${p.id}`} />}
                           >
                             <p.icon /> <span>{p.title}</span>
                           </SidebarMenuButton>
@@ -157,7 +147,7 @@ export function App() {
                       <CaretUpDownIcon className="ms-auto text-muted-foreground" />
                     </SidebarMenuButton>
                     <DropdownMenuContent side="top" align="start">
-                      <DropdownMenuItem onClick={() => (location.hash = "#/settings")}>
+                      <DropdownMenuItem onClick={() => navigate("/settings")}>
                         <UserIcon /> Account
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
@@ -179,7 +169,7 @@ export function App() {
               <Breadcrumb className="hidden md:block">
                 <BreadcrumbList>
                   <BreadcrumbItem>
-                    <BreadcrumbLink href="#/overview">{current.group}</BreadcrumbLink>
+                    <BreadcrumbLink render={<Link to="/overview" />}>{current.group}</BreadcrumbLink>
                   </BreadcrumbItem>
                   <BreadcrumbSeparator />
                   <BreadcrumbItem>
@@ -214,7 +204,12 @@ export function App() {
 
             <main className="flex-1 p-4 md:p-6">
               <Suspense fallback={<Skeleton className="h-96 w-full" />}>
-                <current.Component />
+                <Routes>
+                  {PAGES.map((p) => (
+                    <Route key={p.id} path={p.id} element={<p.Component />} />
+                  ))}
+                  <Route path="*" element={<Navigate to="/overview" replace />} />
+                </Routes>
               </Suspense>
             </main>
           </SidebarInset>
@@ -230,7 +225,7 @@ export function App() {
                       <CommandItem
                         key={p.id}
                         onSelect={() => {
-                          location.hash = `#/${p.id}`
+                          navigate(`/${p.id}`)
                           setPaletteOpen(false)
                         }}
                       >

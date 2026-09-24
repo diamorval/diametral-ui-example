@@ -108,6 +108,7 @@ import {
   type ColumnDef,
 } from "diametral-ds"
 import { type MouseEvent, useEffect, useMemo, useRef, useState } from "react"
+import { useHref } from "react-router"
 
 // ---------- mock data ----------
 
@@ -728,6 +729,7 @@ const INVOICE_PAGE = 8
 function InvoicesTable() {
   const [invoices, setInvoices] = useState(INVOICES)
   const [page, setPage] = useState(1)
+  const href = useHref("/clients")
   const pageCount = Math.max(1, Math.ceil(invoices.length / INVOICE_PAGE))
   const current = Math.min(page, pageCount)
   const visible = invoices.slice((current - 1) * INVOICE_PAGE, current * INVOICE_PAGE)
@@ -813,7 +815,7 @@ function InvoicesTable() {
         <Pagination className="mx-0 w-auto">
           <PaginationContent>
             <PaginationItem>
-              <PaginationPrevious href="#/clients" onClick={go(current - 1)} aria-disabled={current === 1} />
+              <PaginationPrevious href={href} onClick={go(current - 1)} aria-disabled={current === 1} />
             </PaginationItem>
             {paginationRange({ page: current, pageCount }).map((p, i) =>
               p === "ellipsis" ? (
@@ -822,14 +824,14 @@ function InvoicesTable() {
                 </PaginationItem>
               ) : (
                 <PaginationItem key={p}>
-                  <PaginationLink href="#/clients" isActive={p === current} onClick={go(p)}>
+                  <PaginationLink href={href} isActive={p === current} onClick={go(p)}>
                     {p}
                   </PaginationLink>
                 </PaginationItem>
               )
             )}
             <PaginationItem>
-              <PaginationNext href="#/clients" onClick={go(current + 1)} aria-disabled={current === pageCount} />
+              <PaginationNext href={href} onClick={go(current + 1)} aria-disabled={current === pageCount} />
             </PaginationItem>
           </PaginationContent>
         </Pagination>

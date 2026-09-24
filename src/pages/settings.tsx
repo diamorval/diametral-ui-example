@@ -99,6 +99,7 @@ import {
   toast,
 } from "diametral-ds"
 import { type ComponentProps, useState } from "react"
+import { Link } from "react-router"
 
 type Tone = NonNullable<ComponentProps<typeof Button>["tone"]>
 const TONES: Tone[] = ["black", "red", "brown", "khaki", "beige", "green", "blue", "yellow"]
@@ -757,7 +758,7 @@ export default function Settings() {
                     <ul className="grid w-72 gap-1">
                       {HELP_LINKS.map((link) => (
                         <li key={link.title}>
-                          <NavigationMenuLink href="#/settings" className="block p-3 hover:bg-muted">
+                          <NavigationMenuLink render={<Link to="/settings" />} className="block p-3 hover:bg-muted">
                             <span className="text-xs font-semibold tracking-wider uppercase">{link.title}</span>
                             <p className="mt-1 text-sm text-muted-foreground">{link.description}</p>
                           </NavigationMenuLink>
@@ -767,7 +768,7 @@ export default function Settings() {
                   </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <NavigationMenuLink href="#/inbox" className={navigationMenuTriggerStyle()}>
+                  <NavigationMenuLink render={<Link to="/inbox" />} className={navigationMenuTriggerStyle()}>
                     Contact support
                   </NavigationMenuLink>
                 </NavigationMenuItem>

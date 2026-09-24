@@ -8,7 +8,7 @@ for (const id of PAGES) {
     page.on("pageerror", (error) => errors.push(error.message))
     page.on("console", (msg) => msg.type() === "error" && errors.push(msg.text()))
 
-    await page.goto(`/#/${id}`)
+    await page.goto(`/${id}`)
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible()
     expect(errors).toEqual([])
   })
@@ -32,5 +32,12 @@ test("command palette navigates", async ({ page }) => {
   await page.keyboard.press("ControlOrMeta+k")
   await page.getByPlaceholder("Jump to a page…").fill("settings")
   await page.keyboard.press("Enter")
-  await expect(page).toHaveURL(/#\/settings$/)
+  await expect(page).toHaveURL(/\/settings$/)
+})
+
+test("deep links load and unknown paths redirect", async ({ page }) => {
+  await page.goto("/projects")
+  await expect(page.getByRole("heading", { level: 1, name: "Projects" })).toBeVisible()
+  await page.goto("/nope")
+  await expect(page).toHaveURL(/\/overview$/)
 })

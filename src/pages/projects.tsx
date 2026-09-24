@@ -105,6 +105,7 @@ import {
   toast,
 } from "diametral-ds"
 import { type ReactNode, useEffect, useState } from "react"
+import { useNavigate } from "react-router"
 
 type Consultant = { name: string; role: string; rate: number; skills: string[] }
 
@@ -624,6 +625,7 @@ function GalleryView() {
 }
 
 export default function Projects() {
+  const navigate = useNavigate()
   const created = (what: string) => toast.add({ title: `${what} created`, description: "Draft saved to your workspace." })
 
   return (
@@ -642,7 +644,7 @@ export default function Projects() {
           <PageHeaderActions>
             <SplitButton
               size="sm"
-              onMain={() => (location.hash = "#/new-mission")}
+              onMain={() => navigate("/new-mission")}
               menuLabel="More create options"
               menu={
                 <>
