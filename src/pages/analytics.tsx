@@ -222,13 +222,12 @@ const CASH_CONFIG = {
 } satisfies ChartConfig
 
 const keur = (v: number) => `${v.toLocaleString("fr-FR")} k€`
-const CHART = "aspect-auto h-64 w-full"
 
 function ChartCard({ title, description, className, children }: { title: string; description: string; className?: string; children: React.ReactNode }) {
   return (
     <Card className={className}>
       <CardHeader>
-        <CardTitle role="heading" aria-level={2}>{title}</CardTitle>
+        <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent>{children}</CardContent>
@@ -277,7 +276,6 @@ export default function Analytics() {
             series={REVENUE_SERIES}
             rightAxis={{ tickFormatter: (v) => `${v}%`, domain: [0, 50] }}
             grid
-            className={CHART}
           />
         </ChartCard>
 
@@ -294,13 +292,13 @@ export default function Analytics() {
         </ChartCard>
 
         <ChartCard title="Utilisation by practice" description="Billable rate, % of available days">
-          <LineChart config={UTILISATION_CONFIG} data={UTILISATION} xAxisKey="month" grid dots className={CHART}>
+          <LineChart config={UTILISATION_CONFIG} data={UTILISATION} xAxisKey="month" grid dots>
             <ReferenceLine y={80} strokeDasharray="4 4" stroke="var(--ds-chart-1)" label={{ value: "Target 80%", position: "insideBottomRight", fontSize: 11 }} />
           </LineChart>
         </ChartCard>
 
         <ChartCard title="Margin by client" description="Gross margin %, tinted against the 25% floor">
-          <BarChart config={{ margin: { label: "Margin %" } }} data={CLIENT_MARGIN} xAxisKey="client" statusKey="status" max={50} grid className={CHART} />
+          <BarChart config={{ margin: { label: "Margin %" } }} data={CLIENT_MARGIN} xAxisKey="client" statusKey="status" max={50} grid />
         </ChartCard>
 
         <ChartCard title="Revenue by sector" description="Share of YTD revenue, %">
@@ -308,11 +306,11 @@ export default function Analytics() {
         </ChartCard>
 
         <ChartCard title="Sales pipeline" description="Open opportunities this year, stage-to-stage conversion">
-          <FunnelChart data={PIPELINE} nameKey="stage" valueKey="deals" conversion="previous" className={CHART} />
+          <FunnelChart data={PIPELINE} nameKey="stage" valueKey="deals" conversion="previous" />
         </ChartCard>
 
         <ChartCard title="EBITDA bridge" description="Year to date, k€" className="md:col-span-2">
-          <WaterfallChart data={BRIDGE} nameKey="step" valueKey="value" totalKeys={["Revenue", "EBITDA"]} grid formatValue={keur} className={CHART} />
+          <WaterfallChart data={BRIDGE} nameKey="step" valueKey="value" totalKeys={["Revenue", "EBITDA"]} grid formatValue={keur} />
         </ChartCard>
 
         <ChartCard title="Skills coverage" description="Average self-assessment, 0–100">
@@ -330,12 +328,12 @@ export default function Analytics() {
             xLabel="Day rate (€)"
             yLabel="Margin %"
             grid
-            className="aspect-auto h-72 w-full"
+            className="h-72"
           />
         </ChartCard>
 
         <ChartCard title="Client portfolio" description="YTD revenue by sector and client, k€">
-          <Treemap config={PORTFOLIO_CONFIG} data={PORTFOLIO} formatValue={keur} className="aspect-auto h-72 w-full" />
+          <Treemap config={PORTFOLIO_CONFIG} data={PORTFOLIO} formatValue={keur} className="h-72" />
         </ChartCard>
 
         <ChartCard title="Staffing" description="Days billed per consultant per week" className="md:col-span-2 xl:col-span-1">
@@ -362,7 +360,7 @@ export default function Analytics() {
         </ChartCard>
 
         <ChartCard title="Time allocation" description="Share of consultant days, September">
-          <StackedBar config={TIME_CONFIG} data={TIME_SPLIT} labelKey="practice" className="aspect-auto h-64 w-full" />
+          <StackedBar config={TIME_CONFIG} data={TIME_SPLIT} labelKey="practice" className="h-64" />
         </ChartCard>
       </div>
 
@@ -370,12 +368,12 @@ export default function Analytics() {
 
       <Card>
         <CardHeader>
-          <CardTitle role="heading" aria-level={2}>Cash collection</CardTitle>
+          <CardTitle>Cash collection</CardTitle>
           <CardDescription>Invoiced vs collected, with days sales outstanding — built directly on ChartContainer and recharts</CardDescription>
           <CardAction className="text-xs text-muted-foreground">Sep DSO 53 days</CardAction>
         </CardHeader>
         <CardContent>
-          <ChartContainer config={CASH_CONFIG} className="aspect-auto h-72 w-full">
+          <ChartContainer config={CASH_CONFIG} className="h-72">
             <ComposedChart data={CASH}>
               <CartesianGrid vertical={false} />
               <XAxis dataKey="month" tickLine={false} axisLine={false} />

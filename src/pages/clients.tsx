@@ -433,29 +433,6 @@ export default function ClientsPage() {
               </div>
             ))}
           </div>
-        ) : filtered.length === 0 ? (
-          <Empty className="border border-dashed border-border">
-            <EmptyHeader>
-              <EmptyMedia variant="icon">
-                <FunnelSimpleIcon />
-              </EmptyMedia>
-              <EmptyTitle>No client matches</EmptyTitle>
-              <EmptyDescription>
-                {rows.length ? "Try another search term or loosen the sector and status filters." : "Every client was deleted."}
-              </EmptyDescription>
-            </EmptyHeader>
-            <EmptyContent>
-              {rows.length ? (
-                <Button variant="outline" size="sm" onClick={clearFilters}>
-                  Clear filters
-                </Button>
-              ) : (
-                <Button variant="outline" size="sm" onClick={() => setRows(CLIENTS)}>
-                  Restore demo data
-                </Button>
-              )}
-            </EmptyContent>
-          </Empty>
         ) : (
           <DataTable
             columns={columns}
@@ -468,6 +445,30 @@ export default function ClientsPage() {
             onSelectionChange={setSelected}
             defaultSort={[{ id: "revenue", desc: true }]}
             columnToggle
+            emptyMessage={
+              <Empty>
+                <EmptyHeader>
+                  <EmptyMedia variant="icon">
+                    <FunnelSimpleIcon />
+                  </EmptyMedia>
+                  <EmptyTitle>No client matches</EmptyTitle>
+                  <EmptyDescription>
+                    {rows.length ? "Try another search term or loosen the sector and status filters." : "Every client was deleted."}
+                  </EmptyDescription>
+                </EmptyHeader>
+                <EmptyContent>
+                  {rows.length ? (
+                    <Button variant="outline" size="sm" onClick={clearFilters}>
+                      Clear filters
+                    </Button>
+                  ) : (
+                    <Button variant="outline" size="sm" onClick={() => setRows(CLIENTS)}>
+                      Restore demo data
+                    </Button>
+                  )}
+                </EmptyContent>
+              </Empty>
+            }
             title={`${filtered.length} clients`}
             toolbar={
               selected.length ? (

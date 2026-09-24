@@ -1,2 +1,3 @@
+# diametral-ds is our own package: the example must test each release right after it is published.
 minimumReleaseAgeExclude:
-  - diametral-ds@0.1.0-rc.0
+  - diametral-ds

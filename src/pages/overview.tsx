@@ -203,7 +203,7 @@ export default function Overview() {
             <CardAction><Badge variant="secondary">k€</Badge></CardAction>
           </CardHeader>
           <CardContent>
-            <AreaChart config={REVENUE_CONFIG} data={REVENUE} xAxisKey="month" grid className="aspect-auto h-64 w-full" />
+            <AreaChart config={REVENUE_CONFIG} data={REVENUE} xAxisKey="month" grid />
           </CardContent>
         </Card>
 
