@@ -235,7 +235,7 @@ function MissionDrawer({
                 {mission.client} · {mission.days} days at {eur(mission.rate)} = {eur(mission.days * mission.rate)}
               </DrawerDescription>
             </DrawerHeader>
-            <div className="flex min-h-0 flex-1 flex-col gap-6 overflow-y-auto px-4 pb-4 select-text">
+            <div className="flex min-h-0 flex-1 flex-col gap-6 overflow-y-auto px-4 pb-4">
               <section className="flex flex-col gap-3">
                 <h3 className="text-xs font-semibold tracking-wider text-muted-foreground uppercase">Phase</h3>
                 <Stepper orientation="vertical">
@@ -506,12 +506,7 @@ function FilesView() {
                 <TocItem key={s.id} level={s.level}>
                   <TocLink
                     href={`#${s.id}`}
-                    onClick={(event) => {
-                      // The app routes on location.hash, so an in-page anchor would navigate away.
-                      event.preventDefault()
-                      setActive(s.id)
-                      document.getElementById(s.id)?.scrollIntoView({ behavior: "smooth", block: "start" })
-                    }}
+                    onClick={() => setActive(s.id)}
                     aria-current={active === s.id ? "location" : undefined}
                     className="aria-[current]:border-foreground aria-[current]:text-foreground"
                   >
@@ -578,7 +573,7 @@ function GalleryView() {
             {current + 1} of {SLIDES.length} · {SLIDES[current].title}
           </CardDescription>
         </CardHeader>
-        <CardContent className="px-12 sm:px-14">
+        <CardContent>
           <Carousel setApi={setApi} opts={{ align: "start" }}>
             <CarouselContent>
               {SLIDES.map((s) => (

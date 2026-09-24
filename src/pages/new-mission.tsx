@@ -210,14 +210,14 @@ export default function NewMission() {
     if (errors[key]) setErrors(({ [key]: _, ...rest }) => rest)
   }
 
+  const checkStep = (index: number) => {
+    const found = validate(index, m)
+    setErrors(found)
+    return !Object.keys(found).length
+  }
+
   const goTo = (index: number) => {
-    if (index > active) {
-      const found = validate(active, m)
-      setErrors(found)
-      if (Object.keys(found).length) return
-    } else {
-      setErrors({})
-    }
+    setErrors({})
     setActive(index)
   }
 
@@ -298,8 +298,8 @@ export default function NewMission() {
         {err(errors, "email")}
       </Field>
       <Field>
-        <FieldLabel>Contact phone</FieldLabel>
-        <PhoneInput value={m.phone} onValueChange={(value) => set("phone", value)} />
+        <FieldLabel htmlFor="mission-phone">Contact phone</FieldLabel>
+        <PhoneInput id="mission-phone" value={m.phone} onValueChange={(value) => set("phone", value)} />
         <FieldDescription>Optional.</FieldDescription>
       </Field>
       <Field data-invalid={invalid("city")}>
@@ -497,8 +497,8 @@ export default function NewMission() {
   const budgetStep = (
     <FieldGroup className="grid gap-6 md:grid-cols-2">
       <Field data-invalid={invalid("dates")} className="md:col-span-2">
-        <FieldLabel>Mission dates</FieldLabel>
-        <DateRangePicker value={m.dates} onValueChange={(value) => set("dates", value)} className="w-full md:w-72" />
+        <FieldLabel htmlFor="mission-dates">Mission dates</FieldLabel>
+        <DateRangePicker id="mission-dates" aria-invalid={invalid("dates")} value={m.dates} onValueChange={(value) => set("dates", value)} className="w-full md:w-72" />
         {err(errors, "dates")}
       </Field>
       <Field data-invalid={invalid("dayRate")}>
@@ -640,6 +640,7 @@ export default function NewMission() {
             label="New mission steps"
             active={active}
             onStepChange={goTo}
+            onBeforeNext={checkStep}
             onFinish={finish}
             finishLabel="Create mission"
             steps={[

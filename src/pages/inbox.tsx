@@ -510,7 +510,7 @@ function Conversation({
           <AvatarFallback>{initials(thread.name)}</AvatarFallback>
         </Avatar>
         <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-          <Editable value={thread.subject} onSubmit={(v) => v.trim() && onRename(v.trim())} className="min-w-0 text-sm font-medium [&_[data-slot=editable-preview]]:truncate" />
+          <Editable aria-label="Subject" value={thread.subject} onSubmit={(v) => v.trim() && onRename(v.trim())} className="min-w-0 text-sm font-medium [&_[data-slot=editable-preview]]:truncate" />
           <span className="flex items-center gap-2 text-xs text-muted-foreground">
             {thread.name}
             <Tag tone={thread.company === "Diametral" ? "neutral" : "info"} className="px-2 py-0.5">

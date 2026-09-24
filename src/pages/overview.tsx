@@ -72,6 +72,7 @@ import {
   TimelineDescription,
   TimelineIndicator,
   TimelineItem,
+  TimelineTime,
   TimelineTitle,
   type ChartConfig,
 } from "diametral-ds"
@@ -81,7 +82,6 @@ const eur = (n: number) =>
 
 const PRACTICES = { all: "All practices", strategy: "Strategy", data: "Data & AI", engineering: "Engineering" }
 
-// StatCardDelta ties colour to arrow direction, so every KPI here is one where "up" is good.
 const KPIS = [
   { label: "Revenue MTD", value: eur(412_800), delta: "+8.2%", up: true, spark: [310, 342, 328, 365, 371, 389, 402, 413] },
   { label: "Billable utilisation", value: "81%", delta: "+3pt", up: true, spark: [72, 74, 71, 76, 78, 77, 80, 81] },
@@ -303,7 +303,7 @@ export default function Overview() {
                   <TimelineIndicator><Icon /></TimelineIndicator>
                   <TimelineContent>
                     <TimelineTitle>{title}</TimelineTitle>
-                    <RelativeTime date={at} locale="en" className="text-xs text-muted-foreground" />
+                    <TimelineTime render={<RelativeTime date={at} locale="en" />} />
                     <TimelineDescription>{detail}</TimelineDescription>
                   </TimelineContent>
                 </TimelineItem>
