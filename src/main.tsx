@@ -4,6 +4,7 @@ import { createRoot } from "react-dom/client"
 import { BrowserRouter } from "react-router"
 import "./index.css"
 import { App } from "./App"
+import { preloadPages } from "./pages"
 
 document.querySelector<HTMLLinkElement>("link[rel=icon]")!.href = mark
 
@@ -14,3 +15,5 @@ createRoot(document.getElementById("root")!).render(
     </BrowserRouter>
   </StrictMode>
 )
+
+addEventListener("load", preloadPages)
