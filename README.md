@@ -18,7 +18,7 @@ pnpm dev
 
 ```css
 /* src/index.css */
-@import "diametral-ds/styles.css";
+@import "diametral-ds/styles.tailwind.css";
 @source "./**/*.{ts,tsx}";
 ```
 
