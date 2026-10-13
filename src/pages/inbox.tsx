@@ -66,12 +66,6 @@ import {
   MessageContent,
   MessageFooter,
   MessageHeader,
-  MessageScroller,
-  MessageScrollerButton,
-  MessageScrollerContent,
-  MessageScrollerItem,
-  MessageScrollerProvider,
-  MessageScrollerViewport,
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading,
@@ -93,6 +87,14 @@ import {
   TooltipTrigger,
   toast,
 } from "diametral-ds"
+import {
+  MessageScroller,
+  MessageScrollerButton,
+  MessageScrollerContent,
+  MessageScrollerItem,
+  MessageScrollerProvider,
+  MessageScrollerViewport,
+} from "diametral-ds/message-scroller"
 import { type ReactNode, useEffect, useRef, useState, useSyncExternalStore } from "react"
 
 // ---------- mock data ----------
