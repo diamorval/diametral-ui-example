@@ -75,7 +75,7 @@ import {
   TimelineTime,
   TimelineTitle,
   type ChartConfig,
-} from "diametral-ds"
+} from "@diametral/design-system/react"
 
 const eur = (n: number) =>
   new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n)

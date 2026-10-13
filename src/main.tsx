@@ -1,4 +1,4 @@
-import mark from "diametral-ds/assets/diametral-mark.svg"
+import mark from "@diametral/design-system/assets/logo/diametral-mark.svg"
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 import { BrowserRouter } from "react-router"

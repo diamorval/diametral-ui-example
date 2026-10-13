@@ -97,7 +97,7 @@ import {
   ToggleGroup,
   ToggleGroupItem,
   toast,
-} from "diametral-ds"
+} from "@diametral/design-system/react"
 import { type ComponentProps, useState } from "react"
 import { Link } from "react-router"
 

@@ -12,7 +12,7 @@
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
     "@shadcn/react": "^0.2.1",
-    "diametral-ds": "0.4.0",
+    "@diametral/design-system": "5.0.0-beta.6",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "react-router": "^8.4.0",

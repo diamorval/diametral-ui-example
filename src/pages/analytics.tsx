@@ -39,7 +39,7 @@ import {
   type ChartConfig,
   type ComboSeries,
   type DateRange,
-} from "diametral-ds"
+} from "@diametral/design-system/react"
 
 type Period = "month" | "quarter" | "year"
 

@@ -103,7 +103,7 @@ import {
   TreeItemTrigger,
   TreeLeaf,
   toast,
-} from "diametral-ds"
+} from "@diametral/design-system/react"
 import { type ReactNode, useEffect, useState } from "react"
 import { useNavigate } from "react-router"
 

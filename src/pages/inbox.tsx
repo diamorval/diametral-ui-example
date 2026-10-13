@@ -86,7 +86,7 @@ import {
   TooltipContent,
   TooltipTrigger,
   toast,
-} from "diametral-ds"
+} from "@diametral/design-system/react"
 import {
   MessageScroller,
   MessageScrollerButton,
@@ -94,7 +94,7 @@ import {
   MessageScrollerItem,
   MessageScrollerProvider,
   MessageScrollerViewport,
-} from "diametral-ds/message-scroller"
+} from "@diametral/design-system/react/message-scroller"
 import { type ReactNode, useEffect, useRef, useState, useSyncExternalStore } from "react"
 
 // ---------- mock data ----------

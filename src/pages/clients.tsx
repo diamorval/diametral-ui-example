@@ -106,7 +106,7 @@ import {
   TooltipTrigger,
   toast,
   type ColumnDef,
-} from "diametral-ds"
+} from "@diametral/design-system/react"
 import { type MouseEvent, useEffect, useMemo, useRef, useState } from "react"
 import { useHref } from "react-router"
 

@@ -54,7 +54,7 @@ import {
   Toaster,
   TooltipProvider,
   Wordmark,
-} from "diametral-ds"
+} from "@diametral/design-system/react"
 import { Suspense, useEffect, useState } from "react"
 import { Link, Navigate, Route, Routes, useLocation, useNavigate } from "react-router"
 

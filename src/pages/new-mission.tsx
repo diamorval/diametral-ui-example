@@ -85,7 +85,7 @@ import {
   Textarea,
   Wizard,
   toast,
-} from "diametral-ds"
+} from "@diametral/design-system/react"
 import { useState } from "react"
 
 type Client = { value: string; label: string; sector: string }

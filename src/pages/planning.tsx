@@ -51,7 +51,7 @@ import {
   TooltipContent,
   TooltipTrigger,
   toast,
-} from "diametral-ds"
+} from "@diametral/design-system/react"
 import { type ReactNode, useState } from "react"
 
 // Fixed so the mock schedule always lines up with "today".
