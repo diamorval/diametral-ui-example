@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@diametral/design-system':
-        specifier: 5.0.0-beta.6
-        version: 5.0.0-beta.6(@date-fns/tz@1.5.0)(@shadcn/react@0.2.1(@types/react@19.3.0)(react@19.3.0))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(redux@5.0.1)
+        specifier: ^1.0.0
+        version: 1.0.0(@date-fns/tz@1.5.0)(@shadcn/react@0.2.1(@types/react@19.3.0)(react@19.3.0))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(redux@5.0.1)
       '@phosphor-icons/react':
         specifier: ^2.1.10
         version: 2.1.10(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -94,8 +94,8 @@ packages:
   '@date-fns/tz@1.5.0':
     resolution: {integrity: sha512-lwYN/vDPeNRULcepoE/LO2Pgx+7/RV+S9ARfbc9lr2DtGkOD7pAiruHvbR1RX3Qyf6ja47EWJDMsNK5vK08DJg==}
 
-  '@diametral/design-system@5.0.0-beta.6':
-    resolution: {integrity: sha512-+9ETFs8QCEvqWRCY8S1QZdU5YXCRTeKt7+zKGVbkKmf1zR+W329kXviIsqXd5SIkuRTXZgXyDgGl/f0tD9Kj1g==}
+  '@diametral/design-system@1.0.0':
+    resolution: {integrity: sha512-xsV/sNMSIGdS15nFJdYStL3i04JiOGg4cX6nO6Ui8vwDTn0VKAHgSeM19tPJ80AxVioVQoEhJxAwB08wZPsRgg==}
     engines: {node: '>=18'}
     peerDependencies:
       '@shadcn/react': ^0.2.1
@@ -1205,7 +1205,7 @@ snapshots:
 
   '@date-fns/tz@1.5.0': {}
 
-  '@diametral/design-system@5.0.0-beta.6(@date-fns/tz@1.5.0)(@shadcn/react@0.2.1(@types/react@19.3.0)(react@19.3.0))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(redux@5.0.1)':
+  '@diametral/design-system@1.0.0(@date-fns/tz@1.5.0)(@shadcn/react@0.2.1(@types/react@19.3.0)(react@19.3.0))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(redux@5.0.1)':
     dependencies:
       '@base-ui/react': 1.8.0(@date-fns/tz@1.5.0)(@types/react@19.3.0)(date-fns@4.4.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@dnd-kit/core': 6.3.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
